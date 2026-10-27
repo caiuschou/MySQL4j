@@ -33,6 +33,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libaio1t64 libnuma1 || sudo apt-get install -y libaio1 libnuma1
+          # Ubuntu 24.04 renamed the library to libaio.so.1t64; mysqld 8.0.25 asks for libaio.so.1
+          lib=/usr/lib/x86_64-linux-gnu
+          if [ ! -e $lib/libaio.so.1 ] && [ -e $lib/libaio.so.1t64 ]; then
+            sudo ln -s $lib/libaio.so.1t64 $lib/libaio.so.1
+          fi
 
       - name: Build and test
         run: mvn -B -ntp install
