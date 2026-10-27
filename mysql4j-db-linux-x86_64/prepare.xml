@@ -11,13 +11,18 @@
          dest="${input}" skipexisting="true" />
   </target>
 
-  <!-- Only what mysqld needs to initialize and serve: server binary and share/.
+  <!-- Only what mysqld needs to initialize and serve: server binary, its private libs and share/.
        Permissions are not kept in the zip; the runtime marks bin/mysqld executable. -->
   <target name="package" depends="download">
     <delete dir="${stage}" />
     <untar src="${input}" dest="${stage}" compression="xz">
       <patternset>
         <include name="${dist}/bin/mysqld" />
+        <!-- mysqld finds these via RPATH $ORIGIN/../lib/private; only real files, no symlinks (zip has none) -->
+        <include name="${dist}/lib/private/libcrypto.so.1.1" />
+        <include name="${dist}/lib/private/libssl.so.1.1" />
+        <include name="${dist}/lib/private/libprotobuf.so.3.11.4" />
+        <include name="${dist}/lib/private/libprotobuf-lite.so.3.11.4" />
         <include name="${dist}/share/**/*" />
       </patternset>
       <mapper type="glob" from="${dist}/*" to="*" />

@@ -22,13 +22,13 @@ Add the integration you need, the binaries for your OS, and a MySQL driver, all 
 
 ```xml
 <dependency>
-  <groupId>io.mysql4j</groupId>
+  <groupId>io.github.caiuschou</groupId>
   <artifactId>mysql4j-junit5</artifactId>   <!-- or mysql4j-spring-boot / mysql4j-core -->
   <version>1.0.0-SNAPSHOT</version>
   <scope>test</scope>
 </dependency>
 <dependency>
-  <groupId>io.mysql4j</groupId>
+  <groupId>io.github.caiuschou</groupId>
   <artifactId>mysql4j-db-winx64</artifactId>   <!-- and/or mysql4j-db-linux-x86_64 -->
   <version>1.0.0-SNAPSHOT</version>
   <scope>test</scope>

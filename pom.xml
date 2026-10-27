@@ -3,12 +3,35 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.mysql4j</groupId>
+  <groupId>io.github.caiuschou</groupId>
   <artifactId>mysql4j-parent</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>MySQL4j</name>
   <description>Embedded MySQL 8.0.x for Java tests (MariaDB4j style)</description>
+  <url>https://github.com/caiuschou/MySQL4j</url>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>caiuschou</id>
+      <name>caiuschou</name>
+      <url>https://github.com/caiuschou</url>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/caiuschou/MySQL4j.git</connection>
+    <developerConnection>scm:git:git@github.com:caiuschou/MySQL4j.git</developerConnection>
+    <url>https://github.com/caiuschou/MySQL4j</url>
+  </scm>
 
   <modules>
     <module>mysql4j-db-winx64</module>
@@ -43,6 +66,68 @@
       <properties>
         <mysql4j.db.artifact>mysql4j-db-linux-x86_64</mysql4j.db.artifact>
       </properties>
+    </profile>
+    <!-- Central release: mvn -Prelease clean deploy (needs a "central" server in settings.xml and a GPG key). -->
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>3.3.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals><goal>jar-no-fork</goal></goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.6.3</version>
+            <configuration>
+              <doclint>none</doclint>
+              <source>8</source>
+            </configuration>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals><goal>jar</goal></goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.2.4</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals><goal>sign</goal></goals>
+                <configuration>
+                  <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.5.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+              <autoPublish>true</autoPublish>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 

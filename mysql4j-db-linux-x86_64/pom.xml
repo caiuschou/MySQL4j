@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>io.mysql4j</groupId>
+    <groupId>io.github.caiuschou</groupId>
     <artifactId>mysql4j-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
@@ -51,6 +51,33 @@
             <version>1.9</version>
           </dependency>
         </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.1</version>
+        <executions>
+          <execution>
+            <id>empty-sources-jar</id>
+            <phase>package</phase>
+            <goals><goal>jar</goal></goals>
+            <configuration>
+              <classifier>sources</classifier>
+              <forceCreation>true</forceCreation>
+              <skipIfEmpty>false</skipIfEmpty>
+            </configuration>
+          </execution>
+          <execution>
+            <id>empty-javadoc-jar</id>
+            <phase>package</phase>
+            <goals><goal>jar</goal></goals>
+            <configuration>
+              <classifier>javadoc</classifier>
+              <forceCreation>true</forceCreation>
+              <skipIfEmpty>false</skipIfEmpty>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

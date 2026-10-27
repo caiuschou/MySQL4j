@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>io.mysql4j</groupId>
+    <groupId>io.github.caiuschou</groupId>
     <artifactId>mysql4j-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
@@ -30,7 +30,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>io.mysql4j</groupId>
+      <groupId>io.github.caiuschou</groupId>
       <artifactId>mysql4j-core</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -62,7 +62,7 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>io.mysql4j</groupId>
+      <groupId>io.github.caiuschou</groupId>
       <artifactId>${mysql4j.db.artifact}</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
