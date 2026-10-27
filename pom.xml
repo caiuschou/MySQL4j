@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.mysql4j</groupId>
+  <artifactId>mysql4j-parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>MySQL4j</name>
+  <description>Embedded MySQL 8.0.x for Java tests (MariaDB4j style)</description>
+
+  <modules>
+    <module>mysql4j-db-winx64</module>
+    <module>mysql4j-db-linux-x86_64</module>
+    <module>mysql4j-core</module>
+    <module>mysql4j-junit5</module>
+    <module>mysql4j-spring-boot</module>
+  </modules>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>8</maven.compiler.release>
+    <mysql.version>8.0.25</mysql.version>
+  </properties>
+
+  <!-- Tests of each module run against the binaries for the current OS. -->
+  <profiles>
+    <profile>
+      <id>db-windows</id>
+      <activation>
+        <os><family>windows</family></os>
+      </activation>
+      <properties>
+        <mysql4j.db.artifact>mysql4j-db-winx64</mysql4j.db.artifact>
+      </properties>
+    </profile>
+    <profile>
+      <id>db-linux</id>
+      <activation>
+        <os><family>unix</family></os>
+      </activation>
+      <properties>
+        <mysql4j.db.artifact>mysql4j-db-linux-x86_64</mysql4j.db.artifact>
+      </properties>
+    </profile>
+  </profiles>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.2.5</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<project name="MySQL4j-winx64" default="package">
+  <property name="dist" value="mysql-${mysql.version}-winx64" />
+  <property name="input" value="${cacheDir}/input/${dist}.zip" />
+  <property name="stage" value="${project.build.directory}/stage" />
+  <property name="out" value="${project.build.directory}/generated-resources/io/mysql4j/db/${dist}.zip" />
+
+  <target name="download">
+    <mkdir dir="${cacheDir}/input" />
+    <get src="https://cdn.mysql.com/archives/mysql-8.0/${dist}.zip"
+         dest="${input}" skipexisting="true" />
+  </target>
+
+  <!-- Only what mysqld needs to initialize and serve: server exe, OpenSSL and protobuf DLLs (exit 0xC0000135 without them), share/ -->
+  <target name="package" depends="download">
+    <delete dir="${stage}" />
+    <unzip src="${input}" dest="${stage}">
+      <patternset>
+        <include name="${dist}/bin/mysqld.exe" />
+        <include name="${dist}/bin/libcrypto-*.dll" />
+        <include name="${dist}/bin/libssl-*.dll" />
+        <include name="${dist}/bin/libprotobuf.dll" />
+        <include name="${dist}/bin/libprotobuf-lite.dll" />
+        <include name="${dist}/share/**/*" />
+      </patternset>
+      <mapper type="glob" from="${dist}/*" to="*" />
+    </unzip>
+    <mkdir dir="${project.build.directory}/generated-resources/io/mysql4j/db" />
+    <zip destfile="${out}" basedir="${stage}" />
+  </target>
+</project>

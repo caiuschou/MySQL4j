@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project name="MySQL4j-linux-x86_64" default="package">
+  <property name="dist" value="mysql-${mysql.version}-linux-glibc2.17-x86_64-minimal" />
+  <property name="input" value="${cacheDir}/input/${dist}.tar.xz" />
+  <property name="stage" value="${project.build.directory}/stage" />
+  <property name="out" value="${project.build.directory}/generated-resources/io/mysql4j/db/mysql-${mysql.version}-linux-x86_64.zip" />
+
+  <target name="download">
+    <mkdir dir="${cacheDir}/input" />
+    <get src="https://cdn.mysql.com/archives/mysql-8.0/${dist}.tar.xz"
+         dest="${input}" skipexisting="true" />
+  </target>
+
+  <!-- Only what mysqld needs to initialize and serve: server binary and share/.
+       Permissions are not kept in the zip; the runtime marks bin/mysqld executable. -->
+  <target name="package" depends="download">
+    <delete dir="${stage}" />
+    <untar src="${input}" dest="${stage}" compression="xz">
+      <patternset>
+        <include name="${dist}/bin/mysqld" />
+        <include name="${dist}/share/**/*" />
+      </patternset>
+      <mapper type="glob" from="${dist}/*" to="*" />
+    </untar>
+    <mkdir dir="${project.build.directory}/generated-resources/io/mysql4j/db" />
+    <zip destfile="${out}" basedir="${stage}" />
+  </target>
+</project>
