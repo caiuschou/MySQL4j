@@ -1,6 +1,6 @@
-package io.mysql4j.junit5;
+package io.github.caiuschou.mysql4j.junit5;
 
-import io.mysql4j.MySQLConfig;
+import io.github.caiuschou.mysql4j.MySQLConfig;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 /**
  * Starts an embedded MySQL before the annotated test class and stops it afterwards.
- * Inject the {@link io.mysql4j.MySQL} as a test method/constructor parameter, or read the
+ * Inject the {@link io.github.caiuschou.mysql4j.MySQL} as a test method/constructor parameter, or read the
  * {@code mysql4j.jdbc-url}, {@code mysql4j.username}, {@code mysql4j.password} and {@code mysql4j.port}
  * system properties.
  */

@@ -1,7 +1,7 @@
-package io.mysql4j.spring;
+package io.github.caiuschou.mysql4j.spring;
 
-import io.mysql4j.MySQL;
-import io.mysql4j.MySQLConfig;
+import io.github.caiuschou.mysql4j.MySQL;
+import io.github.caiuschou.mysql4j.MySQLConfig;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

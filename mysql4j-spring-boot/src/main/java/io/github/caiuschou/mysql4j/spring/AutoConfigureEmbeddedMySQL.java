@@ -1,6 +1,6 @@
-package io.mysql4j.spring;
+package io.github.caiuschou.mysql4j.spring;
 
-import io.mysql4j.MySQLConfig;
+import io.github.caiuschou.mysql4j.MySQLConfig;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

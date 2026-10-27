@@ -1,4 +1,4 @@
-package io.mysql4j;
+package io.github.caiuschou.mysql4j;
 
 import java.io.File;
 import java.io.IOException;

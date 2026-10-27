@@ -1,4 +1,4 @@
-package io.mysql4j.spring;
+package io.github.caiuschou.mysql4j.spring;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

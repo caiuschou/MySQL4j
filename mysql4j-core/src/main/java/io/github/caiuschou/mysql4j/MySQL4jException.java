@@ -1,4 +1,4 @@
-package io.mysql4j;
+package io.github.caiuschou.mysql4j;
 
 public class MySQL4jException extends RuntimeException {
     public MySQL4jException(String message) {

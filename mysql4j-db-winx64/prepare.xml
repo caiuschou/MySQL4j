@@ -3,7 +3,7 @@
   <property name="dist" value="mysql-${mysql.version}-winx64" />
   <property name="input" value="${cacheDir}/input/${dist}.zip" />
   <property name="stage" value="${project.build.directory}/stage" />
-  <property name="out" value="${project.build.directory}/generated-resources/io/mysql4j/db/${dist}.zip" />
+  <property name="out" value="${project.build.directory}/generated-resources/io/github/caiuschou/mysql4j/db/${dist}.zip" />
 
   <target name="download">
     <mkdir dir="${cacheDir}/input" />
@@ -25,7 +25,7 @@
       </patternset>
       <mapper type="glob" from="${dist}/*" to="*" />
     </unzip>
-    <mkdir dir="${project.build.directory}/generated-resources/io/mysql4j/db" />
+    <mkdir dir="${project.build.directory}/generated-resources/io/github/caiuschou/mysql4j/db" />
     <zip destfile="${out}" basedir="${stage}" />
   </target>
 </project>

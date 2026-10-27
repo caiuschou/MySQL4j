@@ -3,7 +3,7 @@
   <property name="dist" value="mysql-${mysql.version}-linux-glibc2.17-x86_64-minimal" />
   <property name="input" value="${cacheDir}/input/${dist}.tar.xz" />
   <property name="stage" value="${project.build.directory}/stage" />
-  <property name="out" value="${project.build.directory}/generated-resources/io/mysql4j/db/mysql-${mysql.version}-linux-x86_64.zip" />
+  <property name="out" value="${project.build.directory}/generated-resources/io/github/caiuschou/mysql4j/db/mysql-${mysql.version}-linux-x86_64.zip" />
 
   <target name="download">
     <mkdir dir="${cacheDir}/input" />
@@ -27,7 +27,7 @@
       </patternset>
       <mapper type="glob" from="${dist}/*" to="*" />
     </untar>
-    <mkdir dir="${project.build.directory}/generated-resources/io/mysql4j/db" />
+    <mkdir dir="${project.build.directory}/generated-resources/io/github/caiuschou/mysql4j/db" />
     <zip destfile="${out}" basedir="${stage}" />
   </target>
 </project>

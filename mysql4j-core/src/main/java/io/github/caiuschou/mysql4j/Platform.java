@@ -1,4 +1,4 @@
-package io.mysql4j;
+package io.github.caiuschou.mysql4j;
 
 import java.util.Locale;
 
@@ -27,9 +27,9 @@ public enum Platform {
         return this == WINX64;
     }
 
-    /** Classpath location of the trimmed distribution zip, e.g. io/mysql4j/db/mysql-8.0.25-winx64.zip */
+    /** Classpath location of the trimmed distribution zip, e.g. io/github/caiuschou/mysql4j/db/mysql-8.0.25-winx64.zip */
     public String resourcePath(String mysqlVersion) {
-        return "io/mysql4j/db/mysql-" + mysqlVersion + "-" + id + ".zip";
+        return "io/github/caiuschou/mysql4j/db/mysql-" + mysqlVersion + "-" + id + ".zip";
     }
 
     public static Platform detect() {

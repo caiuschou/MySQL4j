@@ -1,7 +1,7 @@
-package io.mysql4j.junit5;
+package io.github.caiuschou.mysql4j.junit5;
 
-import io.mysql4j.MySQL;
-import io.mysql4j.MySQLConfig;
+import io.github.caiuschou.mysql4j.MySQL;
+import io.github.caiuschou.mysql4j.MySQLConfig;
 import java.util.Arrays;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;

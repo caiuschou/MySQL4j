@@ -1,9 +1,9 @@
-package io.mysql4j.junit5;
+package io.github.caiuschou.mysql4j.junit5;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.mysql4j.MySQLConfig;
+import io.github.caiuschou.mysql4j.MySQLConfig;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

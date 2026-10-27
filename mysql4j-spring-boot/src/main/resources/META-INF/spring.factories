@@ -1,2 +1,2 @@
 org.springframework.test.context.ContextCustomizerFactory=\
-io.mysql4j.spring.EmbeddedMySQLContextCustomizerFactory
+io.github.caiuschou.mysql4j.spring.EmbeddedMySQLContextCustomizerFactory
