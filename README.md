@@ -1,5 +1,7 @@
 # MySQL4j
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.caiuschou/mysql4j-core)](https://central.sonatype.com/artifact/io.github.caiuschou/mysql4j-core)
+
 Embedded **MySQL 8.0.25** for Java tests, in the style of [MariaDB4j](https://github.com/MariaDB4j/MariaDB4j).
 It unpacks a real `mysqld` from a jar, initializes a temporary data directory, starts the server on a free
 port bound to `127.0.0.1` (root, empty password), and stops and cleans up afterwards. No Docker needed.
@@ -18,19 +20,19 @@ Supported platforms: **Windows x64** and **Linux x86_64** (glibc 2.17+). Java 8+
 
 ## Usage
 
-Add the integration you need, the binaries for your OS, and a MySQL driver, all with `test` scope:
+Published on Maven Central (`io.github.caiuschou`). Add the integration you need, the binaries for your OS, and a MySQL driver, all with `test` scope:
 
 ```xml
 <dependency>
   <groupId>io.github.caiuschou</groupId>
   <artifactId>mysql4j-junit5</artifactId>   <!-- or mysql4j-spring-boot / mysql4j-core -->
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.1</version>
   <scope>test</scope>
 </dependency>
 <dependency>
   <groupId>io.github.caiuschou</groupId>
   <artifactId>mysql4j-db-winx64</artifactId>   <!-- and/or mysql4j-db-linux-x86_64 -->
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.1</version>
   <scope>test</scope>
 </dependency>
 <dependency>
@@ -130,3 +132,10 @@ binaries for the current OS (selected by the `db-windows` / `db-linux` profiles 
 - Closing a server that cannot be reached over JDBC waits up to 30 seconds before killing it.
 - macOS and ARM are not supported.
 - MySQL is GPLv2. Check your company's rules before publishing jars that bundle the binaries.
+- The MySQL4j code is Apache License 2.0 (see `LICENSE`). The `mysql4j-db-*` jars additionally bundle MySQL Community Server binaries under GPLv2.
+
+## Releasing
+
+Push a tag such as `v1.0.2`: `.github/workflows/release.yml` sets that version, signs the artifacts and publishes
+them to Maven Central. It needs the `CENTRAL_USERNAME`, `CENTRAL_PASSWORD` and `GPG_PRIVATE_KEY` repository secrets
+(`GPG_PASSPHRASE` too if the key has a passphrase). A version on Central cannot be deleted or overwritten.
