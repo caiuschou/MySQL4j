@@ -36,6 +36,7 @@ public final class MySQL implements AutoCloseable {
     private final int port;
     private final LinkedList<String> lastOutput = new LinkedList<>();
     private Process process;
+    private volatile Thread lastPump;
 
     private MySQL(MySQLConfig config) {
         this.config = config;
@@ -212,6 +213,7 @@ public final class MySQL implements AutoCloseable {
             }, "mysql4j-output");
             pump.setDaemon(true);
             pump.start();
+            lastPump = pump;
             return p;
         } catch (IOException e) {
             throw new MySQL4jException("Failed to launch " + cmd.get(0), e);
@@ -225,8 +227,19 @@ public final class MySQL implements AutoCloseable {
         }
     }
 
-    private synchronized String tail() {
-        return String.join("\n", lastOutput);
+    private String tail() {
+        // Let the reader thread finish consuming what a just-exited process wrote.
+        Thread pump = lastPump;
+        if (pump != null) {
+            try {
+                pump.join(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        synchronized (this) {
+            return String.join("\n", lastOutput);
+        }
     }
 
     private static int freePort() throws IOException {
