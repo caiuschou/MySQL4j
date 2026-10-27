@@ -10,6 +10,7 @@
   </parent>
 
   <artifactId>mysql4j-db-winx64</artifactId>
+  <name>MySQL4j DB (Windows x64)</name>
   <description>Trimmed MySQL ${mysql.version} binaries for Windows x64</description>
 
   <properties>

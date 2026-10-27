@@ -10,6 +10,7 @@
   </parent>
 
   <artifactId>mysql4j-junit5</artifactId>
+  <name>MySQL4j JUnit 5</name>
   <description>JUnit 5 extension and @EmbeddedMySQL annotation</description>
 
   <dependencies>

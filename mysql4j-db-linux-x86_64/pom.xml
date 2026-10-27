@@ -10,6 +10,7 @@
   </parent>
 
   <artifactId>mysql4j-db-linux-x86_64</artifactId>
+  <name>MySQL4j DB (Linux x86_64)</name>
   <description>Trimmed MySQL ${mysql.version} binaries for Linux x86_64 (glibc 2.17+)</description>
 
   <properties>

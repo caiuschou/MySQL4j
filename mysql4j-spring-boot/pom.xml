@@ -10,6 +10,7 @@
   </parent>
 
   <artifactId>mysql4j-spring-boot</artifactId>
+  <name>MySQL4j Spring Boot</name>
   <description>@AutoConfigureEmbeddedMySQL for Spring Boot 2.x tests: points spring.datasource.* at an embedded MySQL</description>
 
   <properties>
