@@ -26,13 +26,13 @@ Published on Maven Central (`io.github.caiuschou`). Add the integration you need
 <dependency>
   <groupId>io.github.caiuschou</groupId>
   <artifactId>mysql4j-junit5</artifactId>   <!-- or mysql4j-spring-boot / mysql4j-core -->
-  <version>1.0.1</version>
+  <version>1.1.0</version>
   <scope>test</scope>
 </dependency>
 <dependency>
   <groupId>io.github.caiuschou</groupId>
   <artifactId>mysql4j-db-winx64</artifactId>   <!-- and/or mysql4j-db-linux-x86_64 -->
-  <version>1.0.1</version>
+  <version>1.1.0</version>
   <scope>test</scope>
 </dependency>
 <dependency>
