@@ -123,8 +123,10 @@ binaries for the current OS (selected by the `db-windows` / `db-linux` profiles 
 - **Windows temp leftovers**: after each run, InnoDB's renamed `*.d` files (for example
   `undo_2_trunc.log.XXXX.d`) stay delete-pending in `%TEMP%\mysql4j-*\data`. Deletion is retried and then
   ignored, so tests do not fail, but the directories remain until the files can be removed.
-- **Linux is untested**: the package contents are verified, but the Linux path has not been run yet.
-  `bin/mysqld` is made executable at runtime because the zip does not keep permissions.
+- **Linux needs system libraries**: `libaio.so.1` and `libnuma`. On Ubuntu 24.04 install `libaio1t64` and
+  `ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1` (the library was
+  renamed); on older distributions install `libaio1`. CI (`.github/workflows/ci.yml`) runs the tests on
+  Ubuntu and Windows. `bin/mysqld` is made executable at runtime because the zip does not keep permissions.
 - Closing a server that cannot be reached over JDBC waits up to 30 seconds before killing it.
 - macOS and ARM are not supported.
 - MySQL is GPLv2. Check your company's rules before publishing jars that bundle the binaries.
